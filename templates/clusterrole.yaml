@@ -10,67 +10,32 @@ rules:
       - secrets
       - configmaps
       - pods
+      - pods/log
       - services
       - events
       - persistentvolumeclaims
-      - pods/log
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
   - apiGroups: ["apps"]
     resources:
       - deployments
       - replicasets
       - statefulsets
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
   - apiGroups: ["batch"]
     resources:
       - jobs
       - cronjobs
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
   - apiGroups: ["networking.k8s.io"]
     resources:
       - ingresses
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
   - apiGroups: ["rbac.authorization.k8s.io"]
     resources:
       - roles
       - rolebindings
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
