@@ -3,6 +3,13 @@ kind: ClusterRole
 metadata:
   name: a8s-backend-namespace-manager
 rules:
-  - apiGroups: [""]
-    resources: ["namespaces"]
-    verbs: ["get", "list", "watch", "create", "update", "patch"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources:
+      - roles
+      - rolebindings
+    verbs:
+      - get
+      - list
+      - create
+      - update
+      - patch
