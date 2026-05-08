@@ -10,7 +10,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "262a0185"
+  tag: "d251609e"
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.
@@ -84,18 +84,18 @@ livenessProbe:
   httpGet:
     path: /actuator/health
     port: 8080
-  initialDelaySeconds: 30
+  initialDelaySeconds: 120
   periodSeconds: 10
   timeoutSeconds: 5
-  failureThreshold: 5
+  failureThreshold: 10
 readinessProbe:
   httpGet:
     path: /actuator/health
     port: 8080
-  initialDelaySeconds: 15
+  initialDelaySeconds: 90
   periodSeconds: 10
   timeoutSeconds: 5
-  failureThreshold: 5
+  failureThreshold: 10
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
   enabled: false
