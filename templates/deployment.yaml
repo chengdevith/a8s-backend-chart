@@ -48,6 +48,7 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Values.envSecretName }}
+                optional: true
           {{- end }}
           {{- with .Values.env }}
           env:
