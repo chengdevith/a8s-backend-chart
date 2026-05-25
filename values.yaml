@@ -10,7 +10,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "aa9d0d8c"
+  tag: "f8d9b07c"
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.
@@ -109,17 +109,14 @@ volumes:
     secret:
       secretName: cluster2-kubeconfig
       optional: true
-
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: cluster2-kubeconfig
     mountPath: "/app/kubeconfigs/cluster2"
     readOnly: true
-
 env:
   - name: KUBECONFIG_CLUSTER2_PATH
     value: /app/kubeconfigs/cluster2/config
-
 nodeSelector: {}
 tolerations: []
 affinity: {}
