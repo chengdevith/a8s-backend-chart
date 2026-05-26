@@ -4,8 +4,8 @@ metadata:
   name: a8s-backend-cluster-admin
 subjects:
   - kind: ServiceAccount
-    name: a8s-backend
-    namespace: default
+    name: {{ include "a8s-backend.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
 
 roleRef:
   kind: ClusterRole
