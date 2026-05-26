@@ -120,7 +120,7 @@ env:
   - name: KUBERNETES_MODE
     value: cluster
   - name: KUBERNETES_TRUST_CERTS
-    value: "false"
+    value: "true"
   - name: KUBECONFIG_CLUSTER2_PATH
     value: /app/kubeconfigs/cluster2/config
 nodeSelector: {}
