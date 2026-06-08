@@ -10,7 +10,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "8727e0a8"
+  tag: "2cab9a54"
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.
@@ -32,13 +32,6 @@ serviceAccount:
 podAnnotations:
   vault.hashicorp.com/agent-inject: "true"
   vault.hashicorp.com/role: a8s-backend
-  vault.hashicorp.com/agent-inject-secret-app.env: secret/data/a8s/backend
-  vault.hashicorp.com/agent-inject-template-app.env: |-
-    {{- with secret "secret/data/a8s/backend" -}}
-    {{- range $k, $v := .Data.data }}
-    export {{ $k }}="{{ $v }}"
-    {{- end }}
-    {{- end }}
   vault.hashicorp.com/agent-inject-secret-application-prod.yml: secret/data/a8s/backend
   vault.hashicorp.com/agent-inject-template-application-prod.yml: |-
     {{- with secret "secret/data/a8s/backend" -}}
@@ -138,6 +131,8 @@ env:
     value: "true"
   - name: KUBECONFIG_CLUSTER2_PATH
     value: /app/kubeconfigs/cluster2/config
+  - name: SPRING_CONFIG_LOCATION
+    value: file:/vault/secrets/application-prod.yml
   - name: SPRING_CONFIG_LOCATION
     value: file:/vault/secrets/application-prod.yml
 nodeSelector: {}
