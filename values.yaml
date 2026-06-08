@@ -10,7 +10,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "a5f3b537"
+  tag: "a5e6171a"
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.
@@ -29,7 +29,16 @@ serviceAccount:
   name: ""
 # This is for setting Kubernetes Annotations to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-podAnnotations: {}
+podAnnotations:
+  vault.hashicorp.com/agent-inject: "true"
+  vault.hashicorp.com/role: a8s-backend
+  vault.hashicorp.com/agent-inject-secret-app.env: secret/data/a8s/backend
+  vault.hashicorp.com/agent-inject-template-app.env: |-
+    {{- with secret "secret/data/a8s/backend" -}}
+    {{- range $k, $v := .Data.data }}
+    export {{ $k }}="{{ $v }}"
+    {{- end }}
+    {{- end }}
 # This is for setting Kubernetes Labels to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
