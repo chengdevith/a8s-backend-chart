@@ -151,6 +151,8 @@ env:
     value: file:/vault/secrets/application-prod.yml
   - name: SPRING_CONFIG_LOCATION
     value: file:/vault/secrets/application-prod.yml
+  - name: SPRING_CONFIG_LOCATION
+    value: file:/vault/secrets/application-prod.yml
 nodeSelector: {}
 tolerations: []
 affinity: {}
