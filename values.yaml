@@ -10,7 +10,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "73ed991a"
+  tag: "e4c3f9b1"
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.
@@ -75,7 +75,13 @@ ingress:
     - secretName: a8s-backend-tls
       hosts:
         - api.autonomous-istad.com
-resources: {}
+resources:
+  requests:
+    cpu: 250m
+    memory: 1536Mi
+  limits:
+    cpu: 1000m
+    memory: 3Gi
 # We usually recommend not to specify default resources and to leave this as a conscious
 # choice for the user. This also increases chances charts run on environments with little
 # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -133,6 +139,8 @@ env:
     value: /app/kubeconfigs/cluster2/config
   - name: SPRING_CONFIG_LOCATION
     value: file:/vault/secrets/application-prod.yml
+  - name: JAVA_TOOL_OPTIONS
+    value: -Xms768m -Xmx2048m -XX:+ExitOnOutOfMemoryError
 nodeSelector: {}
 tolerations: []
 affinity: {}
